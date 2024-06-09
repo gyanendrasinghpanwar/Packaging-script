@@ -1,0 +1,49 @@
+Install Dependencies and Set Up Virtual Environment
+
+Ensure you have a virtual environment set up and dependencies installed.
+
+bash
+Copy code
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+Make the CLI Tool Executable
+
+Ensure your main.py file has a proper shebang at the top and is executable:
+
+python
+Copy code
+#!/usr/bin/env python3
+# main.py content
+Make it executable:
+
+bash
+Copy code
+chmod +x text_tool/main.py
+Create the Directory Structure for Packaging
+
+Create the directory structure for packaging:
+
+bash
+Copy code
+mkdir -p build/root/usr/local/bin
+Install the CLI Tool into the Directory Structure
+
+Use setup.py to install your tool into the build/root/usr/local/bin directory:
+
+bash
+Copy code
+python setup.py install --root=build/root --prefix=/usr/local
+Create the .pkg File
+
+Use pkgbuild to create the package:
+
+bash
+Copy code
+pkgbuild --root build/root \
+         --identifier com.example.text-tool \
+         --version 1.0 \
+         --install-location /usr/local \
+         ../text-tool.pkg
+Here, the root path for pkgbuild is build/root.
+
